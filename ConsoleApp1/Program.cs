@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿namespace ConsoleApp1;
 
-namespace ConsoleApp1;
-
-public class Program
+public static class Program
 {
     public static void Main()
     {
-        using StreamReader reader = new("C:\\Users\\0759\\RiderProjects\\ConsoleApp1\\ConsoleApp1\\1.txt");
+        var currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
+        var consoleAppDir = currentDir.Parent!.Parent!.Parent;
+
+        var filePath = Path.Combine(consoleAppDir!.FullName, "1.txt");
+        using StreamReader reader = new(filePath);
         string text = reader.ReadToEnd();
 
+        // bits указывает те позиции в тексте, в которых заглавные буквы стоят не по правилам
         var (lowerText, bits) = CapitalPositionEncoder.EncodeCapitalPositions(text);
 
-        // var rle = RleDeltaEncoder.RunLengthEncode(bits.ToArray());
         var result = RleDeltaEncoder.Encode(bits.ToArray());
-
 
         // Получилось почти в 5 раз меньше, чем исходный битовый массив
 
