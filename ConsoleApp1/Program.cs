@@ -20,6 +20,10 @@ public static class Program
 
         Console.WriteLine(result.Length); // 132522 bits
         Console.WriteLine(bits.Count); // 574980 bits
+
+        // если бы кодировали позицию каждого исключения 20 битами, получили бы 9016*20 = 180320 bits
+        Console.WriteLine(bits.Count(x => x)); // 9016 исключений
+        Console.WriteLine(text.Length); // длина текста 574980 -> каждую позицию в тексте можно кодировать 20 битами
     }
 
     // Этот метод был нужен, чтобы понять, каких длин больше встречается в rle-коде.
