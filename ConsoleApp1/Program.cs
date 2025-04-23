@@ -18,12 +18,13 @@ public static class Program
 
         // Получилось почти в 5 раз меньше, чем исходный битовый массив
 
-        Console.WriteLine(result.Length); // 132522 bits
-        Console.WriteLine(bits.Count); // 574980 bits
+        Console.WriteLine($"Результат сжатия: {result.Length} bits"); // 132522 bits
+        Console.WriteLine($"Длина битового массива: {bits.Count} bits"); // 574980 bits
 
+        // длина текста 574980 -> каждую позицию в тексте можно кодировать 20 битами
         // если бы кодировали позицию каждого исключения 20 битами, получили бы 9016*20 = 180320 bits
-        Console.WriteLine(bits.Count(x => x)); // 9016 исключений
-        Console.WriteLine(text.Length); // длина текста 574980 -> каждую позицию в тексте можно кодировать 20 битами
+        Console.WriteLine($"Исключений: {bits.Count(x => x)}"); // 9016 исключений
+        Console.WriteLine($"Если бы кодировали 20-ю битами позиции-исключения, получилось бы: {9016 * 20} bits");
     }
 
     // Этот метод был нужен, чтобы понять, каких длин больше встречается в rle-коде.
